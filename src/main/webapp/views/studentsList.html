@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Students <small>Available Teachers</small>
+        </h1>
+    </div>
+</div>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th class="text-center">Name</th>
+        <th class="text-center">Email</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    <tr ng-repeat="student in students">
+        <td class="text-center">
+            {{student.firstName}} {{student.lastName}}
+        </td>
+        <td class="text-center">
+            {{student.email}}
+        </td>
+        <td class="text-center">
+            <a class="btn btn-primary btn-log" role="button" ng-click="viewStudent(student.id)">View</a>
+        </td>
+    </tr>
+
+</table>
