@@ -13,8 +13,8 @@ highSchoolApp.controller('MenuController', ['$scope', function ($scope) {
                 show: true
             },
             {
-                label: 'Oana',
-                url: '/HighschoolPlatform/#/professorsList',
+                label: 'Classes',
+                url: '/HighschoolPlatform/#/classesList',
                 class: 'fa fa-fw fa-eraser',
                 show: true
             }

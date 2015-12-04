@@ -10,6 +10,7 @@
     <tr>
         <th class="text-center">Name</th>
         <th class="text-center">Email</th>
+        <th class="text-center">Course</th>
         <th class="text-center">Actions</th>
     </tr>
     <tr ng-repeat="professor in professors">
@@ -18,6 +19,9 @@
         </td>
         <td class="text-center">
             {{professor.email}}
+        </td>
+        <td class="text-center">
+            {{professor.courseName}}
         </td>
         <td class="text-center">
             <a class="btn btn-primary btn-log" role="button" ng-click="viewProfessor(professor.id)">View</a>

@@ -1,4 +1,41 @@
-<ul>
-    <li>{{student.firstName}}</li>
-    <li>{{student.lastName}}</li>
-</ul>
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Student: <small>{{student.firstName}} {{student.lastName}}</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item">Class : {{clazz.name}}</li>
+                <li>
+                    <h2 class="page-header">
+                        <small>Grades</small>
+                    </h2>
+                    <table class="table table-responsive table-hover">
+                        <tr>
+                            <th class="text-center">Grade</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Course</th>
+                        </tr>
+                        <tr ng-repeat="grade in grades| orderBy:'courseName' track by grade.id" >
+                            <td class="text-center">
+                                {{grade.value}}
+                            </td>
+                            <td class="text-center">
+                                {{grade.date| date:'MM/dd/yyyy'}}
+                            </td>
+                            <td class="text-center">
+                                {{grade.courseName}}
+                            </td>
+                        </tr>
+
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

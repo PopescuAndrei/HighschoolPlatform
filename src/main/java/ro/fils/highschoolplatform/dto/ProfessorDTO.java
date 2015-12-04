@@ -3,30 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.fils.highschoolplatform.domain;
+package ro.fils.highschoolplatform.dto;
 
 /**
  *
  * @author andre
  */
-public class Professor {
+public class ProfessorDTO {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private int courseId;
+    private String courseName;
 
-    public Professor(int id, String firstName, String lastName, String email, String password, int courseId) {
+    public ProfessorDTO(int id, String firstName, String lastName, String email, String password, String courseName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.courseId = courseId;
+        this.courseName = courseName;
     }
 
-    public Professor() {
+    public ProfessorDTO() {
     }
 
     
@@ -71,12 +71,12 @@ public class Professor {
         this.password = password;
     }
 
-    public int getCourseId() {
-        return courseId;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
     
     

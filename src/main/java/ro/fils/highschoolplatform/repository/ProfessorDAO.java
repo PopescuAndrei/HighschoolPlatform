@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ro.fils.highschoolplatform.domain.Professor;
+import ro.fils.highschoolplatform.dto.ProfessorDTO;
 import ro.fils.highschoolplatform.util.DBManager;
 import ro.fils.highschoolplatform.util.Encryption;
 
@@ -28,12 +29,13 @@ public class ProfessorDAO {
         boolean inserted = false;
         try {
             Connection conn = DBManager.getConnection();
-            String sql = "insert into PROFESSORS(PASSWORD, FIRST_NAME, LAST_NAME, EMAIL)" + " values (?,?,?,?)";
+            String sql = "insert into PROFESSORS(PASSWORD, FIRST_NAME, LAST_NAME, EMAIL,COURSE_ID)" + " values (?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(2, professor.getPassword());
-            statement.setString(3, professor.getFirstName());
-            statement.setString(4, professor.getLastName());
-            statement.setString(5, professor.getEmail());
+            statement.setString(1, professor.getPassword());
+            statement.setString(2, professor.getFirstName());
+            statement.setString(3, professor.getLastName());
+            statement.setString(4, professor.getEmail());
+            statement.setInt(5,professor.getCourseId());
             statement.execute();
             inserted = true;
         } catch (SQLException ex) {
@@ -93,6 +95,7 @@ public class ProfessorDAO {
                 professor.setLastName(rs.getString("LAST_NAME"));
                 professor.setPassword(rs.getString("PASSWORD"));
                 professor.setId(rs.getInt("ID"));
+                professor.setCourseId(rs.getInt("COURSE_ID"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,6 +118,7 @@ public class ProfessorDAO {
                 professor.setLastName(rs.getString("LAST_NAME"));
                 professor.setPassword(rs.getString("PASSWORD"));
                 professor.setId(rs.getInt("ID"));
+                professor.setCourseId(rs.getInt("COURSE_ID"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,6 +141,31 @@ public class ProfessorDAO {
                 professor.setLastName(rs.getString("LAST_NAME"));
                 professor.setPassword(rs.getString("PASSWORD"));
                 professor.setId(rs.getInt("ID"));
+                professor.setCourseId(rs.getInt("COURSE_ID"));
+                professors.add(professor);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return professors;
+    }
+    
+    public List<ProfessorDTO> getAllDTOs() {
+        ProfessorDTO professor = null;
+        ArrayList<ProfessorDTO> professors = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "select * from PROFESSORS INNER JOIN COURSES ON PROFESSORS.COURSE_ID = COURSES.ID";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                professor = new ProfessorDTO();
+                professor.setEmail(rs.getString("EMAIL"));
+                professor.setFirstName(rs.getString("FIRST_NAME"));
+                professor.setLastName(rs.getString("LAST_NAME"));
+                professor.setPassword(rs.getString("PASSWORD"));
+                professor.setId(rs.getInt("ID"));
+                professor.setCourseName(rs.getString("NAME"));
                 professors.add(professor);
             }
         } catch (SQLException ex) {

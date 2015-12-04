@@ -23,16 +23,16 @@ import ro.fils.highschoolplatform.service.impl.ProfessorServiceImpl;
 @Controller
 @RequestMapping("/professors")
 public class ProfessorController {
-    
+
     ProfessorService professorService;
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ArrayList<Professor> getAllProfessors() {
         professorService = new ProfessorServiceImpl();
-        return (ArrayList) professorService.findAllProfessors();
+        return (ArrayList) professorService.getAllProfessorsDTO();
     }
-    
+
     @RequestMapping(method = RequestMethod.GET, value = "/{professorId}")
     public @ResponseBody
     Professor getOneProject(@PathVariable("professorId") int professorId) {

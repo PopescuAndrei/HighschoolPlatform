@@ -12,7 +12,7 @@
         <th class="text-center">Email</th>
         <th class="text-center">Actions</th>
     </tr>
-    <tr ng-repeat="student in students">
+    <tr ng-repeat="student in students | orderBy:'firstName' track by student.id" >
         <td class="text-center">
             {{student.firstName}} {{student.lastName}}
         </td>

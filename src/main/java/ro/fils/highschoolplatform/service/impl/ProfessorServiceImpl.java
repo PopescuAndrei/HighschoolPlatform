@@ -5,10 +5,12 @@
  */
 package ro.fils.highschoolplatform.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ro.fils.highschoolplatform.domain.Professor;
+import ro.fils.highschoolplatform.dto.ProfessorDTO;
 import ro.fils.highschoolplatform.repository.ProfessorDAO;
 import ro.fils.highschoolplatform.service.ProfessorService;
 
@@ -42,6 +44,12 @@ public class ProfessorServiceImpl implements ProfessorService{
             professor = dao.getProfessorByEmail(professor.getEmail());//ii luam si id-ul
         }
         return professor;
+    }
+
+    @Override
+    public ArrayList<ProfessorDTO> getAllProfessorsDTO() {
+        dao = new ProfessorDAO();
+        return (ArrayList) dao.getAllDTOs();
     }
     
 }
