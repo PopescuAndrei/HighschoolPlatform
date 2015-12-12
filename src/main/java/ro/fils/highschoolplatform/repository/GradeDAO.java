@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ro.fils.highschoolplatform.domain.Grade;
 import ro.fils.highschoolplatform.dto.GradeDTO;
 import ro.fils.highschoolplatform.util.DBManager;
 

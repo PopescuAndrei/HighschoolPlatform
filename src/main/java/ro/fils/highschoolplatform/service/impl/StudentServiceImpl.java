@@ -43,5 +43,11 @@ public class StudentServiceImpl implements StudentService{
         }
         return student;
     }
+
+    @Override
+    public List<Student> getAllStudentsInClass(int classId) {
+        dao = new StudentDAO();
+        return dao.getAllStudentsInClass(classId);
+    }
     
 }

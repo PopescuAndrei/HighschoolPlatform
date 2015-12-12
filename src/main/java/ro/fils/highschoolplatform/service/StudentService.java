@@ -16,4 +16,5 @@ public interface StudentService {
     public List<Student> findAllStudents();
     public Student getStudent(int id);
     public Student insertStudent(Student student);
+    public List<Student> getAllStudentsInClass(int classId);
 }

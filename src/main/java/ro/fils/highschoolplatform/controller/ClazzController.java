@@ -25,11 +25,12 @@ public class ClazzController {
 
     ClazzService clazzService;
     
-    @RequestMapping(method = RequestMethod.GET, value = "/{studentId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{clazzId}")
     public @ResponseBody
-    Clazz getStudentClazz(@PathVariable("studentId") int studentId) {
+    Clazz getStudentClazz(@PathVariable("clazzId") int clazzId) {
+        System.out.println("claaaaaaaaaaaaaaaasaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + clazzId);
         clazzService = new ClazzServiceImpl();
-        return clazzService.getStudentClazz(studentId);
+        return clazzService.getClazz(clazzId);
     }
     
     

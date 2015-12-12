@@ -22,6 +22,10 @@ highSchoolApp.config(['$routeProvider',
                     templateUrl: 'views/classesList.html',
                     controller: 'ClassesListController'
                 })
+                .when('/classesList/:classId', {
+                    templateUrl: 'views/classView.html',
+                    controller: 'ClassViewController'
+                })
                 .otherwise({
                     templateUrl: 'views/home.html',
                     controller: 'HomeController'

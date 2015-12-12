@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
         <title>High School Platform</title>
-        <link href="assets/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/sb-admin.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="style/main.css" rel="stylesheet" type="text/css"/>
 
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+
+
+        <link href="assets/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" type="text/css"/>
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css"/>
+        <link href="style/maisn.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body ng-app='highSchoolApp'>
 
         <div id="wrapper">
 
-            <div ng-include="'views/menu.html'"></div>
+            <div ng-include="'views/menu.html'" class="sidebar" data-color="purple" data-image="assets/img/sidebar-4.jpg" ng-controller="MenuController"></div>
 
-            <div id="page-wrapper">
-                    <div class="container" ng-view></div>
-            </div>
-            <!-- /#page-wrapper -->
+            <div class="main-panel">
+                <nav class="navbar navbar-default navbar-fixed" ng-include="'views/navbar.html'"></nav>
 
-        </div>
-        <!-- /#wrapper -->
+                <!-- Here the views will be included -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row" ng-view></div>
+                    </div>
+                </div>
+            </div>   
+        </div><!-- /#wrapper -->
 
         <script type="text/javascript" src="assets/jquery.js"></script>
         <script type="text/javascript" src="assets/bootstrap.js"></script>
+        <script src="assets/bootstrap-checkbox-radio-switch.js"></script>
+        <script src="assets/bootstrap-notify.js"></script>
+        <script src="assets/light-bootstrap-dashboard.js"></script>
+
+
         <script type="text/javascript" src="assets/angular.js"></script>
         <script type="text/javascript" src="assets/angular-route.js"></script>
         <script type="text/javascript" src="scripts/app.js"></script>
@@ -44,6 +55,7 @@
         <script type="text/javascript" src="scripts/controller/StudentsListController.js"></script>
         <script type="text/javascript" src="scripts/controller/StudentViewController.js"></script>
         <script type="text/javascript" src="scripts/controller/ClassesListController.js"></script>
+        <script type="text/javascript" src="scripts/controller/ClassViewController.js"></script>
     </body>
 
 </html>

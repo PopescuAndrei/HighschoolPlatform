@@ -63,7 +63,7 @@ public class ClazzDAO {
         Clazz clazz = null;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select * from CLASSES";
+            String sql = "select * from CLASSES WHERE ID = " + id;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {

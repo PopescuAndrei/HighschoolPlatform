@@ -23,7 +23,7 @@ import ro.fils.highschoolplatform.util.Encryption;
  * @author andre
  */
 public class StudentDAO {
-    
+
     public Boolean insertStudent(Student student) {
         boolean inserted = false;
         try {
@@ -99,7 +99,7 @@ public class StudentDAO {
         }
         return student;
     }
-    
+
     public Student getStudentById(int id) {
         Student student = null;
         try {
@@ -121,13 +121,36 @@ public class StudentDAO {
         }
         return student;
     }
-    
+
     public List<Student> getAll() {
         Student student = null;
         ArrayList<Student> students = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
             String sql = "select * from STUDENTS";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                student = new Student();
+                student.setEmail(rs.getString("EMAIL"));
+                student.setFirstName(rs.getString("FIRST_NAME"));
+                student.setLastName(rs.getString("LAST_NAME"));
+                student.setPassword(rs.getString("PASSWORD"));
+                student.setId(rs.getInt("ID"));
+                students.add(student);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return students;
+    }
+
+    public List<Student> getAllStudentsInClass(int classId) {
+        Student student = null;
+        ArrayList<Student> students = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "select * from STUDENTS where CLASS_ID = " + classId;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
