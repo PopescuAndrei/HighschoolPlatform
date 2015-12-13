@@ -1,0 +1,51 @@
+in app.js se specifica rutele
+.when('/professorsList/:professorId', {
+                    templateUrl: 'views/professorView.html',
+                    controller: 'ProfessorViewController'
+                })
+
+adica atunci cand ma duc pe localhost/Highschoolplatform/professorslist/1
+sau orice alt id in ng-view-ul din index.html imi va pune professorView.html
+care va fi handle-uit de controller-ul ProfessorViewController
+
+elementele din meniul din stanga sunt gasite in controllers->MenuController
+
+asa se face un post cu datele in interiorul body-ului
+ $scope.create = function (addProject) {
+            $http({url: 'http://localhost:8080/AngularSpring/mvc/projects/', method: 'POST', data: addProject, headers: {'Content-Type': 'application/json'}}).
+                    success(function (data) {
+                        $scope.project = data;
+                        $scope.message = "Saved Succesfull";
+                    });
+        };
+
+controller-ul de spring pentru post-ul cu datele in interiorul body-ului
+@RequestMapping(method = RequestMethod.POST)
+    public @ResponseBody
+    Project insertProject(@RequestBody Project project) {
+        //logica de inserare
+		return project;
+    }
+	
+	
+un post cu parametrii
+$scope.login = function (mail, password) {
+            $http({url: 'http://localhost:8080/AngularSpring/mvc/users/login', method: 'GET', params: {'mail': mail, 'password': password}}).
+                    success(function (data) {//in data voi avea user-ul returnat de controller-ul de spring, poate fii orice si un boolean
+                        $rootScope.loggedInUser = data;
+                        if ($rootScope.loggedInUser.role === 'director') {
+                        } else if ($rootScope.loggedInUser.role === 'proposer'){
+                            
+                        }
+                        $location.url('/AngularSpring/#/home'); //redirecteaza pe home
+                    });
+        };	
+si request-ul din controller-ul de spring din java
+
+	 @RequestMapping(method = RequestMethod.GET, value = "/login")
+    public
+    @ResponseBody
+    User loginUser(@RequestParam("mail") String mail,@RequestParam("password") String password) {
+        //logica de logare
+		return user;
+    }
