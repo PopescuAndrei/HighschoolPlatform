@@ -21,7 +21,7 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
         };
 
         $scope.create = function (mail, password) {
-            $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/loginProfessor', method: 'GET', params: {'mail': mail, 'password': password}}).
+            $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/loginStudent', method: 'GET', params: {'mail': mail, 'password': password}}).
                     success(function (data) {
                         console.log(data);
                         if (data === null || data === undefined || data === "") {
