@@ -2,6 +2,14 @@ var highSchoolApp = angular.module('highSchoolApp', ['ngRoute']);
 highSchoolApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
+                .when('/studentLogin', {
+                  templateUrl: 'views/studentLogin.html',
+                  controller: 'StudentLoginController'
+                })
+                .when('/professorLogin',{
+                    templateUrl: 'views/professorLogin.html',
+                    controller: 'ProfessorLoginController'
+                })
                 .when('/professorsList/:professorId', {
                     templateUrl: 'views/professorView.html',
                     controller: 'ProfessorViewController'

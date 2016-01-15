@@ -6,10 +6,14 @@
 package ro.fils.highschoolplatform.repository;
 
 import java.sql.Connection;
+import java.util.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,5 +48,28 @@ public class GradeDAO {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return grades;
+    }
+
+    public boolean addGradeToStudent(int studentId, int courseId, int gradeValue) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date d = new java.util.Date();
+        String currentTime = format.format(d);
+        System.out.println(currentTime);
+        boolean result = false;
+        gradeValue = 10;
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "INSERT INTO GRADES(DATE,VALUE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + gradeValue + "," + studentId + "," + courseId + ")";
+            System.out.println(sql);
+            Statement ps = con.createStatement();
+            System.out.println(ps.toString());
+            int rs = ps.executeUpdate(sql);
+            if (rs > 0) {
+                result = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }

@@ -14,4 +14,5 @@ import ro.fils.highschoolplatform.dto.GradeDTO;
  */
 public interface GradeService {
     ArrayList<GradeDTO> getAllGradesForStudent(int studentId);
+    boolean addGradeToStudent(int studentId,int courseId, int gradeValue);
 }

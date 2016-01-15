@@ -40,4 +40,5 @@ public class ClazzController {
         clazzService = new ClazzServiceImpl();
         return (ArrayList) clazzService.findAllClazzez();
     }
+    
 }

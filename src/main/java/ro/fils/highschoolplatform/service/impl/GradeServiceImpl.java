@@ -28,4 +28,9 @@ public class GradeServiceImpl implements GradeService{
         return (ArrayList) dao.getAllGradesOfStudent(studentId);
     }
     
+    @Override
+    public boolean addGradeToStudent(int studentId,int courseId, int gradeValue){
+        dao = new GradeDAO();
+        return dao.addGradeToStudent(studentId,courseId,gradeValue);
+    }
 }

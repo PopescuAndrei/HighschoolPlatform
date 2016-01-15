@@ -1,8 +1,11 @@
-highSchoolApp.controller('ClassViewController', ['$scope', '$http', '$routeParams', '$location',
-    function ($scope, $http, $routeParams, $location) {
+highSchoolApp.controller('ClassViewController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+    function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.clazz = {};
         $scope.students = [];
-        
+        $scope.studentsA = [];
+        $rootScope.courseId = 3;
+        $scope.gradeValue = 0;
+
         var url = document.URL;
         var clazzId = url.substr(url.lastIndexOf('/') + 1);
 
@@ -10,22 +13,50 @@ highSchoolApp.controller('ClassViewController', ['$scope', '$http', '$routeParam
                 success(function (data) {
                     $scope.clazz = data;
                 });
-        
-        
+
+
         $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsClass/' + clazzId, method: 'GET'}).
                 success(function (data) {
                     $scope.students = data;
                 });
-//        $scope.create = function (addProject) {
-//            $http({url: 'http://localhost:8080/AngularSpring/mvc/projects/', method: 'POST', data: addProject, headers: {'Content-Type': 'application/json'}}).
-//                    success(function (data) {
-//                        $scope.project = data;
-//                        $scope.message = "Saved Succesfull";
-//                        $location.url('/AngularSpring/#/home');
-//                    });
-//        };
         
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsClass/' + clazzId, method: 'GET'}).
+                success(function (data) {
+                    $scope.studentsA = data;
+                });
+                
+        $scope.addGrade = function (gradeValue, studentId) {
+            $http({
+                url: 'http://localhost:8080/HighschoolPlatform/mvc/grades/',
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                params: {'studentId': studentId, 'gradeValue': $scope.gradeValue, 'courseId': $rootScope.courseId}})
+                    .success(function (data) {
+                        $scope.result = data;
+                        if ($scope.result === true) {
+                            showNotification("Grade " + $scope.gradeValue + "was added")
+                        } else {
+                            showNotification("Ups...Something went wrong. Try adding again")
+                        }
+                    });
+        };
+
         $scope.back = function () {
             $location.url('/classesList');
+        };
+
+        var showNotification = function (message) {
+            color = Math.floor((Math.random() * 4) + 1);
+
+            $.notify({
+                icon: "pe-7s-gift",
+                message: message
+            }, {
+                timer: 4000,
+                placement: {
+                    from: "bottom",
+                    align: "center"
+                }
+            });
         };
     }]);
