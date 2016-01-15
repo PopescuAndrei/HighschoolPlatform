@@ -14,28 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ro.fils.highschoolplatform.dto.GradeDTO;
+import ro.fils.highschoolplatform.dto.AbsenceDTO;
 import ro.fils.highschoolplatform.util.DBManager;
 
 /**
  *
  * @author andre
  */
-public class GradeDAO {
-
-    public List<GradeDTO> getAllGradesOfStudent(int studentId) {
-        GradeDTO grade = null;
-        ArrayList<GradeDTO> grades = new ArrayList<>();
+public class AbsenceDAO {
+    
+    public List<AbsenceDTO> getAllAbsencesOfStudent(int studentId) {
+        AbsenceDTO grade = null;
+        ArrayList<AbsenceDTO> grades = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select GRADES.ID,GRADES.VALUE,STUDENTS.FIRST_NAME,STUDENTS.LAST_NAME,COURSES.NAME,GRADES.DATE from GRADES inner join STUDENTS on GRADES.STUDENT_ID = STUDENTS.ID"
-                    + "	inner join COURSES on GRADES.COURSE_ID = COURSES.ID WHERE STUDENTS.ID = " + studentId;
+            String sql = "select ABSENCES.ID, STUDENTS.FIRST_NAME, STUDENTS.LAST_NAME, COURSES.NAME, ABSENCES.DATE from ABSENCES inner join STUDENTS on ABSENCES.STUDENT_ID = STUDENTS.ID"
+                    + "	inner join COURSES on ABSENCES.COURSE_ID = COURSES.ID WHERE STUDENTS.ID = " + studentId;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                grade = new GradeDTO();
+                grade = new AbsenceDTO();
                 grade.setId(rs.getInt("ID"));
-                grade.setValue(rs.getInt("VALUE"));
                 grade.setStudentName(rs.getString("STUDENTS.FIRST_NAME") + rs.getString("STUDENTS.LAST_NAME"));
                 grade.setCourseName(rs.getString("COURSES.NAME"));
                 grade.setDate(rs.getDate("DATE"));
@@ -47,16 +46,15 @@ public class GradeDAO {
         return grades;
     }
 
-    public boolean addGradeToStudent(int studentId, int courseId, int gradeValue) {
+    public boolean addAbsenceToStudent(int studentId, int courseId) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date d = new java.util.Date();
         String currentTime = format.format(d);
         System.out.println(currentTime);
         boolean result = false;
-        gradeValue = 10;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "INSERT INTO GRADES(DATE,VALUE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + gradeValue + "," + studentId + "," + courseId + ")";
+            String sql = "INSERT INTO ABSENCES(DATE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + studentId + "," + courseId + ")";
             System.out.println(sql);
             Statement ps = con.createStatement();
             System.out.println(ps.toString());
