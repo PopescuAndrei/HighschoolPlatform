@@ -80,10 +80,7 @@ DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) DEFAULT NULL,
-  `CLASS_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_COURSES_CLASSES` (`CLASS_ID`),
-  CONSTRAINT `FK_COURSES_CLASSES` FOREIGN KEY (`CLASS_ID`) REFERENCES `classes` (`ID`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -93,8 +90,36 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'Matematica',1),(2,'Informatica',1),(3,'Limba Romana',4),(4,'Limba Engleza',3),(5,'Istorie',2);
+INSERT INTO `courses` VALUES (1,'Matematica'),(2,'Informatica'),(3,'Limba Romana'),(4,'Limba Engleza'),(5,'Istorie');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `courses_classes`
+--
+
+DROP TABLE IF EXISTS `courses_classes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `courses_classes` (
+  `ID` int(11) NOT NULL,
+  `CLASS_ID` int(11) DEFAULT NULL,
+  `COURSE_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK__classes` (`CLASS_ID`),
+  KEY `FK__courses` (`COURSE_ID`),
+  CONSTRAINT `FK__classes` FOREIGN KEY (`CLASS_ID`) REFERENCES `classes` (`ID`),
+  CONSTRAINT `FK__courses` FOREIGN KEY (`COURSE_ID`) REFERENCES `courses` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `courses_classes`
+--
+
+LOCK TABLES `courses_classes` WRITE;
+/*!40000 ALTER TABLE `courses_classes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `courses_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -115,7 +140,7 @@ CREATE TABLE `grades` (
   KEY `FK_GRADES_COURSES` (`COURSE_ID`),
   CONSTRAINT `FK_GRADES_COURSES` FOREIGN KEY (`COURSE_ID`) REFERENCES `courses` (`ID`),
   CONSTRAINT `FK_GRADES_STUDENTS` FOREIGN KEY (`STUDENT_ID`) REFERENCES `students` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +149,7 @@ CREATE TABLE `grades` (
 
 LOCK TABLES `grades` WRITE;
 /*!40000 ALTER TABLE `grades` DISABLE KEYS */;
-INSERT INTO `grades` VALUES (1,10,'2016-01-01',1,2),(2,9,'2016-01-02',1,1),(3,10,'2015-11-12',1,2),(4,10,'2016-01-07',1,3);
+INSERT INTO `grades` VALUES (1,10,'2016-01-01',1,2),(2,9,'2016-01-02',1,1),(3,10,'2015-11-12',1,2),(4,10,'2016-01-07',1,3),(5,10,'2016-01-16',1,3),(6,10,'2016-01-16',2,3);
 /*!40000 ALTER TABLE `grades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-15 20:08:18
+-- Dump completed on 2016-01-16 23:57:22

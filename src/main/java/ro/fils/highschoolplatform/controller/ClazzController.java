@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.fils.highschoolplatform.domain.Clazz;
 import ro.fils.highschoolplatform.service.ClazzService;
@@ -41,4 +42,10 @@ public class ClazzController {
         return (ArrayList) clazzService.findAllClazzez();
     }
     
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody
+    ArrayList<Clazz> getClazzesOfProfessor(@RequestParam("professorId") int professorId) {
+        clazzService = new ClazzServiceImpl();
+        return (ArrayList) clazzService.findAllClazzez();
+    }
 }
