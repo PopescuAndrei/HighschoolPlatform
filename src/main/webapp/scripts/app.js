@@ -3,12 +3,20 @@ highSchoolApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
                 .when('/studentLogin', {
-                  templateUrl: 'views/studentLogin.html',
-                  controller: 'StudentLoginController'
+                    templateUrl: 'views/studentLogin.html',
+                    controller: 'StudentLoginController'
                 })
-                .when('/professorLogin',{
+                .when('/dropdown', {
+                    templateUrl: 'views/exempludropdown.html',
+                    controller: 'DropDownController'
+                })
+                .when('/professorLogin', {
                     templateUrl: 'views/professorLogin.html',
                     controller: 'ProfessorLoginController'
+                })
+                .when('/adminLogin', {
+                    templateUrl: 'views/adminLogin.html',
+                    controller: 'AdminLoginController'
                 })
                 .when('/professorsList/:professorId', {
                     templateUrl: 'views/professorView.html',

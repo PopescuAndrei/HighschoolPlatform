@@ -1,13 +1,10 @@
-highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$location', '$rootScope',
+highSchoolApp.controller('AdminLoginController', ['$scope', '$http', '$location', '$rootScope',
     function ($scope, $http, $location, $rootScope) {
-        $rootScope.loggedInStudent = {
+        $rootScope.loggedInAdmin = {
             id: "",
             username: "",
             password: "",
-            firstName: "",
-            lastName: "",
-            mail: ""
-
+            mail : "",
         };
 
 
@@ -21,15 +18,13 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
         };
 
         $scope.create = function (mail, password) {
-            $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/loginStudent', method: 'GET', params: {'mail': mail, 'password': password}}).
+            $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/loginAdmin', method: 'GET', params: {'mail': mail, 'password': password}}).
                     success(function (data) {
-                        console.log(data);
                         if (data === null || data === undefined || data === "") {
-                            console.log("nulla");
                             showNotification("Email or password incorrect!");
                         } else {
-                            $rootScope.loggedInStudent = data;
-                            $rootScope.logged = false;
+                            $rootScope.loggedInAdmin = data;
+                            $rootScope.logged = true;
                             hideFields();
                             $location.url('/HighSchoolApp/#/home');
                         }
@@ -39,6 +34,15 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
         $('.message a').click(function () {
             $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
         });
+
+        var hideFields = function () {
+            $rootScope.actionsList[0].show = false;
+            $rootScope.actionsList[1].show = false;
+            $rootScope.actionsList[2].show = false;
+            $rootScope.actionsList[3].show = true;
+            $rootScope.actionsList[4].show = true;
+            $rootScope.actionsList[5].show = true;
+        };
 
         var showNotification = function (message) {
             color = Math.floor((Math.random() * 4) + 1);
@@ -53,14 +57,5 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
                     align: "center"
                 }
             });
-        };
-
-        var hideFields = function () {
-            $rootScope.actionsList[0].show = false;
-            $rootScope.actionsList[1].show = false;
-            $rootScope.actionsList[2].show = false;
-            $rootScope.actionsList[3].show = false;
-            $rootScope.actionsList[4].show = false;
-            $rootScope.actionsList[5].show = false;
         };
     }]);

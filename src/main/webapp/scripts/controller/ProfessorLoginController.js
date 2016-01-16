@@ -41,9 +41,11 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
         var hideFields = function () {
             $rootScope.actionsList[0].show = false;
             $rootScope.actionsList[1].show = false;
-            $rootScope.actionsList[2].show = true;
+            $rootScope.actionsList[2].show = false;
             $rootScope.actionsList[3].show = true;
             $rootScope.actionsList[4].show = true;
+            $rootScope.actionsList[5].show = true;
+            
         };
 
         var showNotification = function (message) {

@@ -13,6 +13,12 @@ highSchoolApp.controller('MenuController', ['$scope','$rootScope', '$location', 
                 show: true
             },
             {
+                label: 'Admin Login',
+                url: '/HighschoolPlatform/#/adminLogin',
+                class: 'pe-7s-user',
+                show: true
+            },
+            {
                 label: 'Professors',
                 url: '/HighschoolPlatform/#/professorsList',
                 class: 'pe-7s-user',
@@ -39,9 +45,10 @@ highSchoolApp.controller('MenuController', ['$scope','$rootScope', '$location', 
             $rootScope.loggedInAdmin = {};
             $rootScope.actionsList[0].show = true;
             $rootScope.actionsList[1].show = true;
-            $rootScope.actionsList[2].show = false;
+            $rootScope.actionsList[2].show = true;
             $rootScope.actionsList[3].show = false;
             $rootScope.actionsList[4].show = false;
+            $rootScope.actionsList[5].show = false;
             $location.url('/HighschoolPlatform');
         };
     }]);

@@ -5,14 +5,11 @@
  */
 package ro.fils.highschoolplatform.controller;
 
-import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ro.fils.highschoolplatform.domain.Student;
-import ro.fils.highschoolplatform.util.Encryption;
 
 /**
  *
@@ -25,10 +22,6 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     Boolean loginUser(@RequestParam("mail") String mail, @RequestParam("password") String password) {
-        if (mail.equals("admin") && password.equals("admin")) {
-            return true;
-        } else {
-            return false;
-        }
+        return mail.equals("admin") && password.equals("admin");
     }
 }
