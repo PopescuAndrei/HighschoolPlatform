@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author andre
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/loginAdmin")
 public class AdminController {
 
     @RequestMapping(method = RequestMethod.GET)

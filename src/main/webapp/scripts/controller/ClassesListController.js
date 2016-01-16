@@ -4,12 +4,12 @@ highSchoolApp.controller('ClassesListController', ['$scope','$rootScope', '$http
         $scope.className = {};
         $scope.clazzes = [];
         
-        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/clazzes', method: 'GET'}).
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/clazzes',method: 'GET'}).
                 success(function (data) {
                     $scope.className = data;
                 });
 
-        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/clazzes', method: 'GET'}).
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/clazzes/withProfessor', params: {professorId: $rootScope.loggedInProfessor.id}, method: 'GET'}).
                 success(function (data) {
                     $scope.clazzes = data;
                 });

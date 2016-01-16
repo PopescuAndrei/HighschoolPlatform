@@ -95,39 +95,23 @@ public class ClazzDAO {
         return clazz;
     }
     
-//    public Clazz getClazzesOfProfessor(int professorId) {
-//        Clazz clazz = null;
-//        try {
-//            Connection con = DBManager.getConnection();
-//            String sql = "select * from CLASSES INNER JOIN PROFESSORS ON CLASSES.ID = COURSE.CLASS_ID" + id;
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
-//            while (rs.next()) {
-//                clazz = new Clazz();
-//                clazz.setId(rs.getInt("ID"));
-//                clazz.setName(rs.getString("NAME"));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return clazz;
-//    }
-//    
-//    public Clazz getStudentClazz(int studentId) {
-//        Clazz clazz = null;
-//        try {
-//            Connection con = DBManager.getConnection();
-//            String sql = "select CLASSES.ID, CLASSES.NAME from CLASSES inner join STUDENTS on CLASSES.ID = STUDENTS.CLASS_ID where STUDENTS.ID = " + studentId;
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
-//            while (rs.next()) {
-//                clazz = new Clazz();
-//                clazz.setId(rs.getInt("ID"));
-//                clazz.setName(rs.getString("NAME"));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return clazz;
-//    }
+    public ArrayList<Clazz> getClazzesOfProfessor(int professorId) {
+        ArrayList<Clazz> clazzes = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "SELECT * FROM CLASSES INNER JOIN COURSES_CLASSES on CLASSES.ID = COURSES_CLASSES.CLASS_ID WHERE COURSES_CLASSES.COURSE_ID = " + professorId;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Clazz clazz = new Clazz();
+                clazz.setId(rs.getInt("ID"));
+                clazz.setName(rs.getString("NAME"));
+                clazzes.add(clazz);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return clazzes;
+    }
+    
 }

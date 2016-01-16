@@ -42,10 +42,10 @@ public class ClazzController {
         return (ArrayList) clazzService.findAllClazzez();
     }
     
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/withProfessor", method = RequestMethod.GET)
     public @ResponseBody
-    ArrayList<Clazz> getClazzesOfProfessor(@RequestParam("professorId") int professorId) {
+    ArrayList<Clazz> getAllClazzesWithProfessors(@RequestParam("professorId") int professorId){
         clazzService = new ClazzServiceImpl();
-        return (ArrayList) clazzService.findAllClazzez();
+        return (ArrayList) clazzService.getClazzesOfProfessor(professorId);
     }
 }
