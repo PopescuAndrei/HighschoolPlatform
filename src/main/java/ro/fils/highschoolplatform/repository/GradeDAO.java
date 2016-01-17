@@ -53,7 +53,6 @@ public class GradeDAO {
         String currentTime = format.format(d);
         System.out.println(currentTime);
         boolean result = false;
-        gradeValue = 10;
         try {
             Connection con = DBManager.getConnection();
             String sql = "INSERT INTO GRADES(DATE,VALUE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + gradeValue + "," + studentId + "," + courseId + ")";

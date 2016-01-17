@@ -3,6 +3,7 @@ highSchoolApp.controller('StudentViewController', ['$scope', '$http', '$routePar
         $scope.student = {};
         $scope.clazz = undefined;
         $scope.grades = [];
+        $scope.absences = [];
 
         $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/students/' + $routeParams.studentId, method: 'GET'}).
                 success(function (data) {
@@ -18,7 +19,7 @@ highSchoolApp.controller('StudentViewController', ['$scope', '$http', '$routePar
                 .success(function (data) {
                     $scope.grades = data;
                 });
-                
+        
         $scope.back = function () {
             $location.url('/studentsList');
         };

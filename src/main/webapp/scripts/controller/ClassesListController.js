@@ -15,6 +15,14 @@ highSchoolApp.controller('ClassesListController', ['$scope','$rootScope', '$http
                 });
 
         $scope.viewClazz = function (id) {
-            $location.url('/classesList/' + id);
+            $location.url('/classesList/grades/' + id);
+        };
+        
+        $scope.viewAbsences = function(id){
+            $location.url('/classesList/absences/' + id);
+        };
+        
+        $scope.addHomework = function(id){
+            $location.url('/classesList/homework/' + id);
         };
     }]);

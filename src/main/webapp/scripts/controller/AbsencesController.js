@@ -1,4 +1,4 @@
-highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+highSchoolApp.controller('ClassAbsencesViewController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
     function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.clazz = {};
         $scope.students = [];
@@ -16,20 +16,18 @@ highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$rout
                 success(function (data) {
                     $scope.students = data;
                 });
+        
                 
-        $scope.addGrade = function (gradeValue, studentId) {
-            console.log(gradeValue);
-            console.log($scope.gradeValue);
+        $scope.addAbsence = function (studentId) {
             $http({
-                url: 'http://localhost:8080/HighschoolPlatform/mvc/grades/',
+                url: 'http://localhost:8080/HighschoolPlatform/mvc/absences',
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                params: {'studentId': studentId, 'courseId': $rootScope.loggedInProfessor.courseId, 'gradeValue': this.gradeValue}})
+                params: {'studentId': studentId, 'courseId': $rootScope.loggedInProfessor.courseId}})
                     .success(function (data) {
                         $scope.result = data;
-                        console.log(gradeValue);
                         if ($scope.result === true) {
-                            showNotification("Grade " + this.gradeValue + "was added")
+                            showNotification("Absence was added")
                         } else {
                             showNotification("Ups...Something went wrong. Try adding again")
                         }

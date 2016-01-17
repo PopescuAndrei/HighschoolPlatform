@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Class <small>{{clazz.name}}</small>
+        </h1>
+    </div>
+</div>
+
+<h2>New Homework</h2>
+<form action="#">
+
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        <input type="text" ng-model="description" class="form-control" placeholder="Username or email">
+    </div>
+
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="fa fa-sticky-note-o"></i></span>
+        <input type="text"  ng-model="dueDate" class="form-control" placeholder="Due Date">
+    </div>
+
+
+    <button class="float" type="submit" ng-click="addHomework(description, dueDate)" ng-disabled="loginForm.$invalid">Login</button>
+
+</form>

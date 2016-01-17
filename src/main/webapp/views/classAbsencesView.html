@@ -12,8 +12,7 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Grades</th>
-            <th>Mean</th>
+            <th>Absences</th>
             <th>Actions</th>
         </tr>
         <tr ng-repeat="student in students| orderBy:'firstName' track by student.id" >
@@ -29,12 +28,9 @@
                 <p>9 / <small>2.12.2015</small></p>
             </td>
             <td class="text-center">
-                9
-            </td>
-            <td class="text-center">
+                
                 <span class="form-group">
-                    <span><input ng-model="gradeValue" type="number" min="2" max="10" class="form-control" placeholder="Grade" id='gradeInput'></span>
-                    <span><a class="btn btn-primary btn-log" id="btnAddGrade" role="button" ng-click="addGrade(grade, student.id)">Add Grade</a></span>
+                    <span><a class="btn btn-primary btn-log" id="btnAddGrade" role="button" ng-click="addAbsence(student.id)">Add Absence</a></span>
                 </span>
             </td>
         </tr>

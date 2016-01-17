@@ -6,7 +6,8 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             password: "",
             firstName: "",
             lastName: "",
-            mail: ""
+            mail: "",
+            courseId : ""
 
         };
 
@@ -44,7 +45,8 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             $rootScope.actionsList[2].show = false;
             $rootScope.actionsList[3].show = true;
             $rootScope.actionsList[4].show = true;
-            $rootScope.actionsList[5].show = true;
+            $rootScope.actionsList[5].show = false;
+            $rootScope.actionsList[6].show = true;
             
         };
 

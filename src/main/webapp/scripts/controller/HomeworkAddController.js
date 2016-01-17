@@ -1,7 +1,8 @@
-highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+highSchoolApp.controller('HomeworkAddController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
     function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.clazz = {};
-        $scope.students = [];
+        $scope.dueDate = '';
+        $scope.description = '';
 
         var url = document.URL;
         var clazzId = url.substr(url.lastIndexOf('/') + 1);
@@ -11,25 +12,16 @@ highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$rout
                     $scope.clazz = data;
                 });
 
-
-        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsClass/' + clazzId, method: 'GET'}).
-                success(function (data) {
-                    $scope.students = data;
-                });
-                
-        $scope.addGrade = function (gradeValue, studentId) {
-            console.log(gradeValue);
-            console.log($scope.gradeValue);
+        $scope.addHomework = function (description, dueDate) {
             $http({
-                url: 'http://localhost:8080/HighschoolPlatform/mvc/grades/',
+                url: 'http://localhost:8080/HighschoolPlatform/mvc/homework',
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                params: {'studentId': studentId, 'courseId': $rootScope.loggedInProfessor.courseId, 'gradeValue': this.gradeValue}})
+                params: {'clazzId': this.clazz.id, 'courseId': $rootScope.loggedInProfessor.courseId, 'description': description, 'dueDate': dueDate}})
                     .success(function (data) {
                         $scope.result = data;
-                        console.log(gradeValue);
                         if ($scope.result === true) {
-                            showNotification("Grade " + this.gradeValue + "was added")
+                            showNotification("Homework posted")
                         } else {
                             showNotification("Ups...Something went wrong. Try adding again")
                         }
@@ -37,9 +29,9 @@ highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$rout
         };
 
         $scope.back = function () {
-            $location.url('/classesList');
+            $location.url('/classesList/' + clazz.id);
         };
- 
+
         var showNotification = function (message) {
             color = Math.floor((Math.random() * 4) + 1);
 

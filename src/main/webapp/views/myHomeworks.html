@@ -1,0 +1,26 @@
+<div class="content">
+    <h1 class="page-header">
+        My Homeworks
+    </h1>
+
+    <div class="table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th class="text-center">Course Name</th>
+                <th class="text-center">Due Date</th>
+                <th class="text-center">View<th>
+            </tr>
+            <tr ng-repeat="homework in homeworks| orderBy:'date' track by homework.id" >
+                <td class="text-center">
+                    {{homework.courseName}}
+                </td>
+                <td class="text-center">
+                    {{homework.dueDate}}
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-log" role="button" ng-click="viewHomework(homework.id)">View Details</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

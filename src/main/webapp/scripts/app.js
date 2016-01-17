@@ -38,9 +38,29 @@ highSchoolApp.config(['$routeProvider',
                     templateUrl: 'views/classesList.html',
                     controller: 'ClassesListController'
                 })
-                .when('/classesList/:classId', {
-                    templateUrl: 'views/classView.html',
-                    controller: 'ClassViewController'
+                .when('/classesList/grades/:classId', {
+                    templateUrl: 'views/classGradesView.html',
+                    controller: 'ClassGradesViewController'
+                })
+                .when('/classesList/absences/:classId', {
+                    templateUrl: 'views/classAbsencesView.html',
+                    controller: 'ClassAbsencesViewController'
+                })
+                .when('/classesList/homework/:classId', {
+                    templateUrl: 'views/homeworkAddView.html',
+                    controller: 'HomeworkAddController'
+                })
+                .when('/studentDetails', {
+                    templateUrl: 'views/studentDetails.html',
+                    controller: 'StudentDetailsController'
+                })
+                .when('/myHomeworks', {
+                    templateUrl: 'views/myHomeworks.html',
+                    controller: 'ViewHomeworksController'
+                })
+                .when('/myHomeworks/:homeworkId', {
+                    templateUrl: 'views/homeworkDetails.html',
+                    controller: 'HomeworkDetailsController'
                 })
                 .otherwise({
                     templateUrl: 'views/home.html',

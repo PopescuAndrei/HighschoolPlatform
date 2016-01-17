@@ -114,4 +114,21 @@ public class ClazzDAO {
         return clazzes;
     }
     
+    
+    public int getClazzCoursesTable(int clazzId, int courseId){
+       ArrayList<Clazz> clazzes = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "SELECT * FROM COURSES_CLASSES WHERE CLASS_ID = " + clazzId + " AND COURSE_ID = " + courseId;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                return rs.getInt("ID");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
 }

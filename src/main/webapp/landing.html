@@ -10,7 +10,7 @@
 
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <link href="assets/css/landing-page.css" rel="stylesheet"/>
-
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
@@ -111,21 +111,87 @@
                     </div>
                 </div>
             </div>
-            <div class="section section-demo">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
+
+
+
+            <!-- TEAM SECTION -->	 <div class="section section-demo">
+
+                <section id="speakers">
+
+                    <div class="container">
+                        <h2 class="header-text">Our amazing team</h2>
+
+                        <!-- Speaker 1 -->
+                        <div class="col-md-3">
+                            <a href="#" class="member-profile">
+                                <div class="unhover_img">
+                                    <img src="assets/img/andrei_h.jpg" alt="" />
+                                </div>
+                                <div class="hover_img">
+                                    <img src="assets/img/andrei.jpg" alt="" />
+                                </div>
+                                <span>Backend Guru</span>
+                                <h4><span>Andrei </span> Popescu</h4>
+                            </a>	
 
                         </div>
-                        <div class="col-md-5 col-md-offset-1">
-                            <h4 class="header-text">Perfect for all types of devices </h4>
-                            <p>
-                                With all the apps that users love! Make it easy for users to share, like, post and tweet their favourite things from the app. Be sure to let users know they continue to remain connected while using your app!
-                            </p>
+
+                        <!-- Speaker 2 -->
+                        <div class="col-md-3">
+                            <a href="#" class="member-profile">
+                                <div class="unhover_img">
+                                    <img src="assets/img/cata_h.jpg" alt="" />
+                                </div>
+                                <div class="hover_img">
+                                    <img src="assets/img/cata.jpg" alt="" />
+                                </div>
+                                <span>Frontend Wizard</span>
+                                <h4><span>Catalin</span> Miu</h4>
+                            </a>	
+
                         </div>
+
+                        <!-- Speaker 3 -->
+                        <div class="col-md-3">
+                            <a href="#" class="member-profile">
+                                <div class="unhover_img">
+                                    <img src="assets/img/oana_h.jpg" alt="" />
+                                </div>
+                                <div class="hover_img">
+                                    <img src="assets/img/oana.jpg" alt="" />
+                                </div>
+                                <span>Exquisite Analyst</span>
+                                <h4><span>Oana</span>Ionel</h4>
+                            </a>					
+
+                        </div>
+
+                        <!-- Speaker 4 -->
+                        <div class="col-md-3">
+                            <a href="#" class="member-profile">
+                                <div class="unhover_img">
+                                    <img src="assets/img/ana_h.jpg" alt="" />
+                                </div>
+                                <div class="hover_img">
+                                    <img src="assets/img/ana.jpg" alt="" />
+                                </div>
+                                <span>Design Diva</span>
+                                <h4><span>Anamaria</span>Sarb</h4>
+                            </a>					
+
+                        </div>
+
+
+
+
                     </div>
-                </div>
+                </section>
+
             </div>
+
+
+
+
             <div class="section section-features">
                 <div class="container">
                     <h4 class="header-text text-center">Benefits</h4>
@@ -196,9 +262,19 @@
         </div>
 
     </body>
-    
     <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap.js" type="text/javascript"></script>
     <script src="assets/js/awesome-landing-page.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <!-- Load jQuery -->
+
+    <!-- jQuery Code for the View All Button -->
+    <script>
+        $(document).ready(function () {
+            $(".fadeIn").click(function () {
+                $("div.row2").fadeIn();
+                $("button.fadeIn").hide();
+            });
+        });
+    </script>
 </html>

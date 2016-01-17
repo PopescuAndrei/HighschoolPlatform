@@ -51,5 +51,11 @@ public class ClazzServiceImpl implements ClazzService {
         dao = new ClazzDAO();
         return (List<Clazz>) dao.getClazzesOfProfessor(professorId);
     }
+    
+    @Override
+    public int getClazzCoursesTable(int clazzId, int courseId){
+        dao = new ClazzDAO();
+        return dao.getClazzCoursesTable(clazzId,courseId);
+    }
 
 }
