@@ -6,8 +6,6 @@
 package ro.fils.highschoolplatform.service;
 
 import java.util.ArrayList;
-import ro.fils.highschoolplatform.domain.Homework;
-import ro.fils.highschoolplatform.dto.GradeDTO;
 import ro.fils.highschoolplatform.dto.HomeworkDTO;
 
 /**

@@ -17,7 +17,7 @@ highSchoolApp.controller('HomeworkAddController', ['$scope', '$http', '$routePar
                 url: 'http://localhost:8080/HighschoolPlatform/mvc/homework',
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                params: {'clazzId': this.clazz.id, 'courseId': $rootScope.loggedInProfessor.courseId, 'description': description, 'dueDate': dueDate}})
+                params: {'clazzId': this.clazz.id, 'courseId': $rootScope.loggedInProfessor.courseId, 'description': description.replace(/ /gi,"%20"), 'dueDate': dueDate}})
                     .success(function (data) {
                         $scope.result = data;
                         if ($scope.result === true) {

@@ -13,12 +13,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ro.fils.highschoolplatform.domain.Homework;
 import ro.fils.highschoolplatform.domain.Student;
 import ro.fils.highschoolplatform.dto.HomeworkDTO;
 import ro.fils.highschoolplatform.service.impl.ClazzServiceImpl;
 import ro.fils.highschoolplatform.service.impl.CourseServiceImpl;
 import ro.fils.highschoolplatform.service.impl.StudentServiceImpl;
 import ro.fils.highschoolplatform.util.DBManager;
+import ro.fils.highschoolplatform.util.EmailUtils;
 
 /**
  *
@@ -57,6 +59,14 @@ public class HomeworkDAO {
                 statement.setString(3, "not_seen");
                 statement.execute();
             }
+            Homework toSend = new Homework();
+            toSend.setCourseId(courseId);
+            toSend.setDescription(description);
+            toSend.setDueDate(dueDate);
+            EmailUtils eUtils = new EmailUtils();
+            System.out.println("Inainte de utils.send");
+            eUtils.sendEmails(toSend, students);
+            
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);

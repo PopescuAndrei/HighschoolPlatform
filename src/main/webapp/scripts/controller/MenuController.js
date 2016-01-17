@@ -31,13 +31,37 @@ highSchoolApp.controller('MenuController', ['$scope', '$rootScope', '$location',
                 show: false
             },
             {
+                label: 'Add Class',
+                url: '/HighschoolPlatform/#/addClass',
+                class: 'pe-7s-leaf',
+                show: false
+            },
+            {
+                label: 'Add Professor',
+                url: '/HighschoolPlatform/#/addProfessor',
+                class: 'pe-7s-leaf',
+                show: false
+            },
+            {
+                label: 'Add Course',
+                url: '/HighschoolPlatform/#/addCourse',
+                class: 'pe-7s-leaf',
+                show: false
+            },
+            {
+                label: 'Add Student',
+                url: '/HighschoolPlatform/#/addStudent',
+                class: 'pe-7s-leaf',
+                show: false
+            },
+            {
                 label: 'My Details',
                 url: '/HighschoolPlatform/#/studentDetails',
                 class: 'pe-7s-note2',
                 show: false,
             },
             {
-                label: 'Classes',
+                label: 'My Classes',
                 url: '/HighschoolPlatform/#/classesList',
                 class: 'pe-7s-study',
                 show: false
@@ -64,6 +88,10 @@ highSchoolApp.controller('MenuController', ['$scope', '$rootScope', '$location',
             $rootScope.actionsList[5].show = false;
             $rootScope.actionsList[6].show = false;
             $rootScope.actionsList[7].show = false;
+            $rootScope.actionsList[8].show = false;
+            $rootScope.actionsList[9].show = false;
+            $rootScope.actionsList[10].show = false;
+            $rootScope.actionsList[11].show = false;
 
             $location.url('/HighschoolPlatform');
         };

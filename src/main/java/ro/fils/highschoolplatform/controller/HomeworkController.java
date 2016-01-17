@@ -30,9 +30,8 @@ public class HomeworkController {
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
     Boolean addHomework(@RequestParam("clazzId") String clazzId, @RequestParam("courseId") int courseId, @RequestParam("description") String description, @RequestParam("dueDate") String dueDate) {
-        boolean result = false;
         hwService = new HomeworkServiceImpl();
-        return hwService.insertHomework(courseId, courseId, description, dueDate);
+        return hwService.insertHomework(courseId, courseId, description.replace("%20", " "), dueDate);
     }
     
     @RequestMapping(method = RequestMethod.GET)

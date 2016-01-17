@@ -4,7 +4,7 @@ highSchoolApp.controller('AdminLoginController', ['$scope', '$http', '$location'
             id: "",
             username: "",
             password: "",
-            mail : "",
+            mail: "",
         };
 
 
@@ -41,8 +41,14 @@ highSchoolApp.controller('AdminLoginController', ['$scope', '$http', '$location'
             $rootScope.actionsList[2].show = false;
             $rootScope.actionsList[3].show = true;
             $rootScope.actionsList[4].show = true;
-            $rootScope.actionsList[5].show = false;
+            $rootScope.actionsList[5].show = true;
             $rootScope.actionsList[6].show = true;
+            $rootScope.actionsList[7].show = true;
+            $rootScope.actionsList[8].show = true;
+            $rootScope.actionsList[9].show = false;
+            $rootScope.actionsList[10].show = false;
+            $rootScope.actionsList[11].show = false;
+
         };
 
         var showNotification = function (message) {

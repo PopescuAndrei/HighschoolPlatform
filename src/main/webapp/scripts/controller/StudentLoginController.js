@@ -24,7 +24,6 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
             $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/loginStudent', method: 'GET', params: {'mail': mail, 'password': password}}).
                     success(function (data) {
                         if (data === null || data === undefined || data === "") {
-                            
                             showNotification("Email or password incorrect!");
                         } else {
                             $rootScope.loggedInStudent = data;
@@ -60,8 +59,13 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
             $rootScope.actionsList[2].show = false;
             $rootScope.actionsList[3].show = false;
             $rootScope.actionsList[4].show = false;
-            $rootScope.actionsList[5].show = true;
-            $rootScope.actionsList[6].show = true;
-            $rootScope.actionsList[7].show = true;
+            $rootScope.actionsList[5].show = false;
+            $rootScope.actionsList[6].show = false;
+            $rootScope.actionsList[7].show = false;
+            $rootScope.actionsList[8].show = false;
+            $rootScope.actionsList[9].show = true;
+            $rootScope.actionsList[10].show = false;
+            $rootScope.actionsList[11].show = true;
+            
         };
     }]);
