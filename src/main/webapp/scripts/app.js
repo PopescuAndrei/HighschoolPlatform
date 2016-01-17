@@ -70,6 +70,6 @@ highSchoolApp.config(['$routeProvider',
         .
         run(['$rootScope',
             function ($rootScope) {
-
+                $rootScope.logged = false;
             }
         ]);

@@ -2,6 +2,7 @@ highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$rout
     function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.clazz = {};
         $scope.students = [];
+        $scope.grade = {};
 
         var url = document.URL;
         var clazzId = url.substr(url.lastIndexOf('/') + 1);
@@ -12,7 +13,7 @@ highSchoolApp.controller('ClassGradesViewController', ['$scope', '$http', '$rout
                 });
 
 
-        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsClass/' + clazzId, method: 'GET'}).
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsGradesClass/', params:{'classId': clazzId, 'courseId': $rootScope.loggedInProfessor.courseId}, method: 'GET'}).
                 success(function (data) {
                     $scope.students = data;
                 });

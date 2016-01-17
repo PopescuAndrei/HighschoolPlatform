@@ -27,7 +27,7 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
                             showNotification("Email or password incorrect!");
                         } else {
                             $rootScope.loggedInStudent = data;
-                            $rootScope.logged = false;
+                            $rootScope.logged = true;
                             hideFields();
                             $location.url('/HighSchoolApp/#/home');
                         }

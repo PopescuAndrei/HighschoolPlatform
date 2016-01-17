@@ -12,7 +12,7 @@ highSchoolApp.controller('ClassAbsencesViewController', ['$scope', '$http', '$ro
                 });
 
 
-        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsClass/' + clazzId, method: 'GET'}).
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/studentsAbsenceClass/',params:{'classId': clazzId, 'courseId': $rootScope.loggedInProfessor.courseId}, method: 'GET'}).
                 success(function (data) {
                     $scope.students = data;
                 });

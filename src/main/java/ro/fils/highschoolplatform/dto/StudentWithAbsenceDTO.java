@@ -6,32 +6,22 @@
 package ro.fils.highschoolplatform.dto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import ro.fils.highschoolplatform.domain.Grade;
+import ro.fils.highschoolplatform.domain.Absence;
 
 /**
  *
  * @author andre
  */
-public class StudentWithGradeDTO {
+public class StudentWithAbsenceDTO {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private double mean;
-
-    public double getMean() {
-        return mean;
-    }
-
-    public void setMean(double mean) {
-        this.mean = mean;
-    }
-    private ArrayList<Grade> gradesList;
+    private ArrayList<Absence> absencesList;
 
 
-    public StudentWithGradeDTO() {
+    public StudentWithAbsenceDTO() {
         
     }
 
@@ -77,12 +67,12 @@ public class StudentWithGradeDTO {
         this.password = password;
     }
 
-    public ArrayList<Grade> getGradesList() {
-        return gradesList;
+    public ArrayList<Absence> getAbsencesList() {
+        return absencesList;
     }
 
-    public void setGradesList(ArrayList<Grade> gradesList) {
-        this.gradesList = gradesList;
+    public void setAbsencesList(ArrayList<Absence> absencesList) {
+        this.absencesList = absencesList;
     }
     
     

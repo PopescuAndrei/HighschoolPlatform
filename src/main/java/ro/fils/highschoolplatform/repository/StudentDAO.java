@@ -11,10 +11,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ro.fils.highschoolplatform.domain.Absence;
+import ro.fils.highschoolplatform.domain.Grade;
 import ro.fils.highschoolplatform.domain.Student;
+import ro.fils.highschoolplatform.dto.StudentWithAbsenceDTO;
+import ro.fils.highschoolplatform.dto.StudentWithGradeDTO;
 import ro.fils.highschoolplatform.util.DBManager;
 import ro.fils.highschoolplatform.util.Encryption;
 
@@ -160,6 +165,65 @@ public class StudentDAO {
                 student.setLastName(rs.getString("LAST_NAME"));
                 student.setPassword(rs.getString("PASSWORD"));
                 student.setId(rs.getInt("ID"));
+                students.add(student);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return students;
+    }
+    
+    public List<StudentWithGradeDTO> getAllStudentsInClassAtCourse(int classId, int courseId) {
+        StudentWithGradeDTO student = null;
+        ArrayList<StudentWithGradeDTO> students = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "select * from STUDENTS where CLASS_ID = " + classId;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                double mean = 0;
+                int no = 0;
+                student = new StudentWithGradeDTO();
+                student.setEmail(rs.getString("EMAIL"));
+                student.setFirstName(rs.getString("FIRST_NAME"));
+                student.setLastName(rs.getString("LAST_NAME"));
+                student.setPassword(rs.getString("PASSWORD"));
+                student.setId(rs.getInt("ID"));
+                ArrayList<Grade> arrayList = new GradeDAO().getGradesOfStudentInCourse(student.getId(),courseId);
+                student.setGradesList(arrayList);
+                for(Grade g : arrayList){
+                    mean = mean+ g.getValue();
+                    no++;
+                }
+                student.setMean(mean/no);
+                students.add(student);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return students;
+    }
+    
+    
+    public List<StudentWithAbsenceDTO> getAllStudentsAndAbsencesInClassAtCourse(int classId, int courseId) {
+        StudentWithAbsenceDTO student = null;
+        ArrayList<StudentWithAbsenceDTO> students = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "select * from STUDENTS where CLASS_ID = " + classId;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                student = new StudentWithAbsenceDTO();
+                student.setEmail(rs.getString("EMAIL"));
+                student.setFirstName(rs.getString("FIRST_NAME"));
+                student.setLastName(rs.getString("LAST_NAME"));
+                student.setPassword(rs.getString("PASSWORD"));
+                student.setId(rs.getInt("ID"));
+                ArrayList<Absence> arrayList = new GradeDAO().getAbsencesOfStudentInCourse(student.getId(),courseId);
+                student.setAbsencesList(arrayList);
                 students.add(student);
             }
         } catch (SQLException ex) {

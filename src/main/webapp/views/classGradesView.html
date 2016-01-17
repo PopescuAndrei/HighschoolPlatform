@@ -24,12 +24,12 @@
                 {{student.email}}
             </td>
             <td class="text-center">
-                <p>10 / <small>7.10.2015</small></p>
-                <p>8 / <small>2.11.2015</small></p>
-                <p>9 / <small>2.12.2015</small></p>
+                <p ng-repeat="grade in student.gradesList">
+                    {{grade.value}} / <small>{{grade.date}}</small>
+                </p>
             </td>
             <td class="text-center">
-                9
+                {{student.mean}}
             </td>
             <td class="text-center">
                 
