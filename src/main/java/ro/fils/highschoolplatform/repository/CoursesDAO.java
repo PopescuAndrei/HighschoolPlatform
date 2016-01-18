@@ -69,6 +69,7 @@ public class CoursesDAO {
             String sql = "select courses.name, courses.id, courses_classes.class_id as class_id, professor_id from courses inner join courses_classes on courses.id = courses_classes.course_id group by professor_id";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
+            
             while (rs.next()) {
                 course = new Course();
                 course.setId(rs.getInt("ID"));
