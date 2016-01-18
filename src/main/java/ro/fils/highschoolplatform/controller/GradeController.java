@@ -6,6 +6,7 @@
 package ro.fils.highschoolplatform.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.fils.highschoolplatform.dto.GradeDTO;
+import ro.fils.highschoolplatform.repository.GradeDAO;
 import ro.fils.highschoolplatform.service.GradeService;
 import ro.fils.highschoolplatform.service.impl.GradeServiceImpl;
 
@@ -38,5 +40,13 @@ public class GradeController {
     boolean addGradeToStudent(@RequestParam("studentId") int studentId,@RequestParam("gradeValue") int gradeValue,@RequestParam("courseId") int courseId){
         gradeService = new GradeServiceImpl();
         return gradeService.addGradeToStudent(studentId, courseId, gradeValue);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT)
+    public @ResponseBody
+    List<Integer> getAllGrades()
+    {
+        GradeDAO gd= new GradeDAO();
+        return gd.getAllGradesNumbers();
     }
 }

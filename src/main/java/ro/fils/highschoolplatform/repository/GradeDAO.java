@@ -48,7 +48,23 @@ public class GradeDAO {
         }
         return grades;
     }
+     public List<Integer> getAllGradesNumbers() {
+        ArrayList<Integer> gradesNrs = new ArrayList();
+        try {
+            Connection con = DBManager.getConnection();
+            for (int i = 2; i <= 10; i++) {
+                String sql = "select count(student_id) from grades where grades.value = " + i;
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                rs.next();
+                gradesNrs.add(rs.getInt(1));
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gradesNrs;
+    }
     public boolean addGradeToStudent(int studentId, int courseId, int gradeValue) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date d = new java.util.Date();

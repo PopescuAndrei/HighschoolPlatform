@@ -66,6 +66,8 @@ public class StudentDAO {
         return found;
     }
 
+   
+
     public boolean loginStudent(String email, String password) {
         boolean found = false;
         try {
@@ -174,7 +176,7 @@ public class StudentDAO {
         }
         return students;
     }
-    
+
     public List<StudentWithGradeDTO> getAllStudentsInClassAtCourse(int classId, int courseId) {
         StudentWithGradeDTO student = null;
         ArrayList<StudentWithGradeDTO> students = new ArrayList<>();
@@ -192,23 +194,22 @@ public class StudentDAO {
                 student.setLastName(rs.getString("LAST_NAME"));
                 student.setPassword(rs.getString("PASSWORD"));
                 student.setId(rs.getInt("ID"));
-                ArrayList<Grade> arrayList = new GradeDAO().getGradesOfStudentInCourse(student.getId(),courseId);
+                ArrayList<Grade> arrayList = new GradeDAO().getGradesOfStudentInCourse(student.getId(), courseId);
                 student.setGradesList(arrayList);
-                for(Grade g : arrayList){
-                    mean = mean+ g.getValue();
+                for (Grade g : arrayList) {
+                    mean = mean + g.getValue();
                     no++;
                 }
-                student.setMean(mean/no);
+                student.setMean(mean / no);
                 students.add(student);
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return students;
     }
-    
-    
+
     public List<StudentWithAbsenceDTO> getAllStudentsAndAbsencesInClassAtCourse(int classId, int courseId) {
         StudentWithAbsenceDTO student = null;
         ArrayList<StudentWithAbsenceDTO> students = new ArrayList<>();
@@ -224,7 +225,7 @@ public class StudentDAO {
                 student.setLastName(rs.getString("LAST_NAME"));
                 student.setPassword(rs.getString("PASSWORD"));
                 student.setId(rs.getInt("ID"));
-                ArrayList<Absence> arrayList = new GradeDAO().getAbsencesOfStudentInCourse(student.getId(),courseId);
+                ArrayList<Absence> arrayList = new GradeDAO().getAbsencesOfStudentInCourse(student.getId(), courseId);
                 student.setAbsencesList(arrayList);
                 students.add(student);
             }

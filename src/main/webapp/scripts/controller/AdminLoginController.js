@@ -54,6 +54,7 @@ highSchoolApp.controller('AdminLoginController', ['$scope', '$http', '$location'
             $rootScope.actionsList[7].show = true;
             $rootScope.actionsList[8].show = true;
             $rootScope.actionsList[9].show = false;
+            $rootScope.actionsList[10].show = true;
         };
         var showNotification = function (message) {
             color = Math.floor((Math.random() * 4) + 1);
