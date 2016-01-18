@@ -23,4 +23,6 @@ public interface ClazzService {
     public Clazz getStudentClazz(int studentId);
     
     public List<Clazz> getClazzesOfProfessor(int professorId);
+    
+    public int getClazzCoursesTable(int clazzId, int courseId);
 }

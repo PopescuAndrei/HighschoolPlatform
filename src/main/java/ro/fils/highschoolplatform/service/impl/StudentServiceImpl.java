@@ -9,6 +9,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ro.fils.highschoolplatform.domain.Student;
+import ro.fils.highschoolplatform.dto.StudentWithAbsenceDTO;
+import ro.fils.highschoolplatform.dto.StudentWithGradeDTO;
 import ro.fils.highschoolplatform.repository.StudentDAO;
 import ro.fils.highschoolplatform.service.StudentService;
 
@@ -52,5 +54,17 @@ public class StudentServiceImpl implements StudentService{
     
 //    @Override
 //    public List<StudentDTO> getAllStudentsAtCourseWithGrades(int courseId,)
+
+    @Override
+    public List<StudentWithGradeDTO> getAllStudentsGradesInClassInCourse(int classId, int courseId) {
+        dao = new StudentDAO();
+        return dao.getAllStudentsInClassAtCourse(classId, courseId);
+    }
+
+    @Override
+    public List<StudentWithAbsenceDTO> getAllStudentsAbsencesInClassInCourse(int classId, int courseId) {
+        dao = new StudentDAO();
+        return dao.getAllStudentsAndAbsencesInClassAtCourse(classId, courseId);
+    }
     
 }

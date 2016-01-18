@@ -6,7 +6,8 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             password: "",
             firstName: "",
             lastName: "",
-            mail: ""
+            mail: "",
+            courseId : ""
 
         };
         $rootScope.clas = {
@@ -57,6 +58,7 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             $rootScope.actionsList[0].show = false;
             $rootScope.actionsList[1].show = false;
             $rootScope.actionsList[2].show = false;
+<<<<<<< HEAD
             $rootScope.actionsList[3].show = true;
             $rootScope.actionsList[4].show = true;
             $rootScope.actionsList[5].show = true;
@@ -64,6 +66,18 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             $rootScope.actionsList[7].show = false;
             $rootScope.actionsList[8].show = false;
             
+=======
+            $rootScope.actionsList[3].show = false;
+            $rootScope.actionsList[4].show = false;
+            $rootScope.actionsList[5].show = false;
+            $rootScope.actionsList[6].show = false;
+            $rootScope.actionsList[7].show = false;
+            $rootScope.actionsList[8].show = false;
+            $rootScope.actionsList[9].show = false;
+            $rootScope.actionsList[10].show = true;
+            $rootScope.actionsList[11].show = false;
+
+>>>>>>> ca8b597584122c939c044b380122e55da72ace5a
         };
 
         var showNotification = function (message) {

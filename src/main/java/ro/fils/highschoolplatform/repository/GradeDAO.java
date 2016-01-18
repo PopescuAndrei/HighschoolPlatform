@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ro.fils.highschoolplatform.domain.Absence;
+import ro.fils.highschoolplatform.domain.Grade;
 import ro.fils.highschoolplatform.dto.GradeDTO;
 import ro.fils.highschoolplatform.util.DBManager;
 
@@ -53,7 +55,6 @@ public class GradeDAO {
         String currentTime = format.format(d);
         System.out.println(currentTime);
         boolean result = false;
-        gradeValue = 10;
         try {
             Connection con = DBManager.getConnection();
             String sql = "INSERT INTO grades(DATE,VALUE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + gradeValue + "," + studentId + "," + courseId + ")";
@@ -68,5 +69,49 @@ public class GradeDAO {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
+    }
+    
+    public ArrayList<Grade> getGradesOfStudentInCourse(int studentId, int courseId) {
+        ArrayList<Grade> grades = new ArrayList<Grade>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "SELECT * FROM GRADES WHERE STUDENT_ID = " + studentId + " AND COURSE_ID = " + courseId;
+            Statement ps = con.createStatement();
+            ResultSet executeQuery = ps.executeQuery(sql);
+            while(executeQuery.next()){
+                Grade g = new Grade();
+                g.setValue(executeQuery.getInt("value"));
+                g.setDate(executeQuery.getDate("date"));
+                g.setId(executeQuery.getInt("id"));
+                g.setCourseId(courseId);
+                g.setStudentId(studentId);
+                grades.add(g);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return grades;
+    }
+    
+    
+     public ArrayList<Absence> getAbsencesOfStudentInCourse(int studentId, int courseId) {
+        ArrayList<Absence> absences = new ArrayList<Absence>();
+        try {
+            Connection con = DBManager.getConnection();
+            String sql = "SELECT * FROM ABSENCES WHERE STUDENT_ID = " + studentId + " AND COURSE_ID = " + courseId;
+            Statement ps = con.createStatement();
+            ResultSet executeQuery = ps.executeQuery(sql);
+            while(executeQuery.next()){
+                Absence a = new Absence();
+                a.setDate(executeQuery.getDate("date"));
+                a.setId(executeQuery.getInt("id"));
+                a.setCourseId(courseId);
+                a.setStudentId(studentId);
+                absences.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return absences;
     }
 }
