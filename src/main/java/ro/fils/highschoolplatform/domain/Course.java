@@ -10,7 +10,6 @@ package ro.fils.highschoolplatform.domain;
  * @author andre
  */
 public class Course {
-<<<<<<< HEAD
     private int id;
     private String name;
     private int classId;
@@ -33,10 +32,6 @@ public class Course {
     public void setId(int id) {
         this.id = id;
     }
-=======
-    private String name;
-    private int id;
->>>>>>> ca8b597584122c939c044b380122e55da72ace5a
 
     public String getName() {
         return name;
@@ -46,7 +41,7 @@ public class Course {
         this.name = name;
     }
 
-<<<<<<< HEAD
+
     public int getClassId() {
         return classId;
     }
@@ -54,17 +49,4 @@ public class Course {
     public void setClassId(int classId) {
         this.classId = classId;
     }
-    
-    
-    
 }
-=======
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-}
->>>>>>> ca8b597584122c939c044b380122e55da72ace5a

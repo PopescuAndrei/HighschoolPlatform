@@ -17,22 +17,23 @@ highSchoolApp.controller('AdminClassesListController', ['$scope', '$http', '$loc
                     $scope.courses = data;
 
                 });
-         $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/adminClazzController'
-                , method: 'POST', params: {classId: 1}}).
-                    success(function (data) {
-                        $scope.pairsSC = data;
-                        
-
-                    });
-            classId = $("#selectClazz").val();
-            $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/adminClazzController'
-                , method: 'DELETE', params: {classId: 1}}).
-                    success(function (data) {
-                        $scope.pairsPS = data;
-                        
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/adminClazzController'
+            , method: 'POST', params: {classId: 1}}).
+                success(function (data) {
+                    $scope.pairsSC = data;
 
 
-                    });
+                });
+
+        classId = $("#selectClazz").val();
+        $http({url: 'http://localhost:8080/HighschoolPlatform/mvc/adminClazzController'
+            , method: 'DELETE', params: {classId: 1}}).
+                success(function (data) {
+                    $scope.pairsPS = data;
+
+
+
+                });
 
         $scope.viewClazz = function (id) {
             $location.url('/classesList/' + id);
@@ -48,6 +49,7 @@ highSchoolApp.controller('AdminClassesListController', ['$scope', '$http', '$loc
 
                     });
         });
+
         $scope.updateClazz = function ()
         {
             courseId = $("#inputCourse").val();
@@ -62,6 +64,7 @@ highSchoolApp.controller('AdminClassesListController', ['$scope', '$http', '$loc
 
 
         };
+
         $('#selectClazz').on('change', function () {
             classId = $("#selectClazz").val();
 
@@ -69,7 +72,7 @@ highSchoolApp.controller('AdminClassesListController', ['$scope', '$http', '$loc
                 , method: 'POST', params: {classId: classId}}).
                     success(function (data) {
                         $scope.pairsSC = data;
-                        
+
 
                     });
             classId = $("#selectClazz").val();
@@ -77,8 +80,6 @@ highSchoolApp.controller('AdminClassesListController', ['$scope', '$http', '$loc
                 , method: 'DELETE', params: {classId: classId}}).
                     success(function (data) {
                         $scope.pairsPS = data;
-                        
-
 
                     });
         });

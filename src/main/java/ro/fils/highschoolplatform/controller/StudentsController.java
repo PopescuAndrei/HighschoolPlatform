@@ -19,19 +19,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ro.fils.highschoolplatform.domain.Professor;
 import ro.fils.highschoolplatform.domain.Student;
-import ro.fils.highschoolplatform.repository.ProfessorDAO;
 import ro.fils.highschoolplatform.repository.StudentDAO;
 import ro.fils.highschoolplatform.service.StudentService;
 import ro.fils.highschoolplatform.service.impl.StudentServiceImpl;
-<<<<<<< HEAD
 import ro.fils.highschoolplatform.util.Encryption;
-=======
 import ro.fils.highschoolplatform.util.PDFCreator;
->>>>>>> ca8b597584122c939c044b380122e55da72ace5a
 
 /**
  *
@@ -40,8 +36,9 @@ import ro.fils.highschoolplatform.util.PDFCreator;
 @Controller
 @RequestMapping("/students")
 public class StudentsController {
+
     private static final int BUFFER_SIZE = 4096;
-    
+
     StudentService studentService;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -57,15 +54,11 @@ public class StudentsController {
         studentService = new StudentServiceImpl();
         return studentService.getStudent(studentId);
     }
-    
-<<<<<<< HEAD
+
+
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
-    void insertStudent(@RequestParam(value = "name", required = false) String name
-            , @RequestParam(value = "email", required = false) String email
-            , @RequestParam(value = "clazz", required = false) String clazz
-            , @RequestParam(value = "password", required = false) String pass)
-    {
+    void insertStudent(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "clazz", required = false) String clazz, @RequestParam(value = "password", required = false) String pass) {
         StudentDAO sDao = new StudentDAO();
         Student s = new Student();
         String split[] = name.split(" ");
@@ -73,11 +66,14 @@ public class StudentsController {
         s.setEmail(email);
         s.setClassId(Integer.parseInt(clazz));
         s.setPassword(Encryption.getHash(pass));
-       
-        if(split.length > 1)
+
+        if (split.length > 1) {
             s.setLastName(name.split(" ")[1]);
+        }
+        System.out.println("fac si eu ceva pe aiciiiiii **************");
         sDao.insertStudent(s);
-=======
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/downloadPDF/{studentId}")
     public void downloadPDF(HttpServletRequest request,
             HttpServletResponse response, @PathVariable("studentId") int studentId) throws FileNotFoundException, IOException, BadElementException {
@@ -122,7 +118,5 @@ public class StudentsController {
 
         inputStream.close();
         outStream.close();
-
->>>>>>> ca8b597584122c939c044b380122e55da72ace5a
     }
 }

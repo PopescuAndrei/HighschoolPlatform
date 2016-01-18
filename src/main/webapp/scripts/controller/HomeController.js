@@ -4,5 +4,4 @@ highSchoolApp.controller('HomeController', ['$scope', '$rootScope', function ($s
             lastName: '',
             role: ''
         };
-
     }]);

@@ -33,13 +33,13 @@ public class StudentDAO {
         boolean inserted = false;
         try {
             Connection conn = DBManager.getConnection();
-            String sql = "insert into students(PASSWORD, FIRST_NAME, LAST_NAME, EMAIL,CLASS_ID)" + " values (?,?,?,?,?)";
+            String sql = "insert into students(PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, CLASS_ID)" + " values (?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, student.getPassword());
             statement.setString(2, student.getFirstName());
             statement.setString(3, student.getLastName());
             statement.setString(4, student.getEmail());
-            statement.setString(5, Integer.toString(student.getClassId()));
+            statement.setInt(5, student.getClassId());
             statement.execute();
             inserted = true;
         } catch (SQLException ex) {
