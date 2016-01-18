@@ -1,0 +1,94 @@
+<div class="content">
+    <h3 class="page-header">
+        Manage Classes
+    </h3>
+    <
+    <div class="table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th class="text-center">Choose Class</th>
+                <th class="text-center">Choose Course</th>
+                <th class="text-center">Choose Professor</th>
+                <th class="text-center">Action</th>
+            </tr>
+
+            <tr>
+                <td class="text-center">
+                    <select id="inputClazz" >
+                        <option ng-repeat="clas in classes" value="{{clas.id}}">
+                            {{clas.name}}
+                        </option>
+                    </select>
+                </td>
+                <td class="text-center">
+                    <select id="inputCourse" >
+                        <option ng-repeat="course in courses" value="{{course.id}}">
+                            {{course.name}}
+                        </option>
+                    </select>
+                </td>
+                <td class="text-center">
+                    <select id="inputProfessor" >
+                        <option ng-repeat="professor in professors" value="{{professor.id}}">
+                            {{professor.firstName}} {{professor.lastName}}
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-log" role="button" ng-click="updateClazz()">Update</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h3 class="page-header">
+        View Classes
+    </h3>
+    <div class="form-inline">
+        <label > Display Classes </label>
+        <select id="selectClazz" >
+            <option ng-repeat="clas in classes" value="{{clas.id}}">
+                {{clas.name}}
+            </option>
+        </select>
+    </div>
+    <h3 class="page-header">
+        Professors
+    </h3>
+    <div class="table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th class="text-center">Subject Name</th>
+                <th class="text-center">Professor Name</th>
+            </tr>
+            <tr ng-repeat="pair in pairsPS" >
+                <td class="text-center">
+                    {{pair.first}}
+                </td>
+                <td class="text-center">
+                    {{pair.second}}
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <h3 class="page-header">
+        Students
+    </h3>
+    <div class="table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th class="text-center">Student Name</th>
+                <th class="text-center">Class Name</th>
+            </tr>
+            <tr ng-repeat="pair in pairsSC" >
+                <td class="text-center">
+                    {{pair.first}}
+                </td>
+                <td class="text-center">
+                    {{pair.second}}
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>

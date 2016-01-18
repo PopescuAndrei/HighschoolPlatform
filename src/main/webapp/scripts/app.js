@@ -34,6 +34,19 @@ highSchoolApp.config(['$routeProvider',
                     templateUrl: 'views/studentsList.html',
                     controller: 'StudentsListController'
                 })
+                .when('/adminStudentsList', {
+                    templateUrl: 'views/adminStudentsList.html',
+                    controller: 'AdminStudentsListController'
+                })
+                .when('/adminProfessorsList', {
+                    templateUrl: 'views/adminProfessorsList.html',
+                    controller: 'AdminProfessorsListController'
+                })
+               
+                .when('/adminClassesList', {
+                    templateUrl: 'views/adminClassesList.html',
+                    controller: 'AdminClassesListController'
+                })
                 .when('/classesList', {
                     templateUrl: 'views/classesList.html',
                     controller: 'ClassesListController'

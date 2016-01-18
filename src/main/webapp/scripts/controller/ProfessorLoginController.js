@@ -1,6 +1,6 @@
 highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$location', '$rootScope',
     function ($scope, $http, $location, $rootScope) {
-        $rootScope.loggedInProfessor = {
+        $rootScope.professor = {
             id: "",
             username: "",
             password: "",
@@ -9,6 +9,21 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             mail: ""
 
         };
+        $rootScope.clas = {
+           id: "",
+           name: ""
+         };
+         $rootScope.clazz = {
+           id: "",
+           name: ""
+         };
+        $rootScope.course = {
+            id: "",
+            name: "",
+            classId:""
+
+        };
+
 
 
         $scope.password = '';
@@ -45,6 +60,9 @@ highSchoolApp.controller('ProfessorLoginController', ['$scope', '$http', '$locat
             $rootScope.actionsList[3].show = true;
             $rootScope.actionsList[4].show = true;
             $rootScope.actionsList[5].show = true;
+            $rootScope.actionsList[6].show = false;
+            $rootScope.actionsList[7].show = false;
+            $rootScope.actionsList[8].show = false;
             
         };
 

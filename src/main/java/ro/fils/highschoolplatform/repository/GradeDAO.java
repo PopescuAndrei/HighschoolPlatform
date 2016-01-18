@@ -28,8 +28,8 @@ public class GradeDAO {
         ArrayList<GradeDTO> grades = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select GRADES.ID,GRADES.VALUE,STUDENTS.FIRST_NAME,STUDENTS.LAST_NAME,COURSES.NAME,GRADES.DATE from GRADES inner join STUDENTS on GRADES.STUDENT_ID = STUDENTS.ID"
-                    + "	inner join COURSES on GRADES.COURSE_ID = COURSES.ID WHERE STUDENTS.ID = " + studentId;
+            String sql = "select grades.ID,grades.VALUE,STUDENTS.FIRST_NAME,STUDENTS.LAST_NAME,COURSES.NAME,grades.DATE from grades inner join STUDENTS on grades.STUDENT_ID = STUDENTS.ID"
+                    + "	inner join COURSES on grades.COURSE_ID = COURSES.ID WHERE STUDENTS.ID = " + studentId;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -56,7 +56,7 @@ public class GradeDAO {
         gradeValue = 10;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "INSERT INTO GRADES(DATE,VALUE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + gradeValue + "," + studentId + "," + courseId + ")";
+            String sql = "INSERT INTO grades(DATE,VALUE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + gradeValue + "," + studentId + "," + courseId + ")";
             System.out.println(sql);
             Statement ps = con.createStatement();
             System.out.println(ps.toString());

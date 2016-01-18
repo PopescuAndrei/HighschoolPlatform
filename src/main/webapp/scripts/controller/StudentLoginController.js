@@ -6,7 +6,23 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
             password: "",
             firstName: "",
             lastName: "",
-            mail: ""
+            mail: "",
+            classId: ""
+
+        };
+        $rootScope.class = {
+            id: "",
+            name: ""
+
+        };
+
+        $rootScope.student = {
+            id: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            classId: ""
 
         };
 
@@ -62,5 +78,8 @@ highSchoolApp.controller('StudentLoginController', ['$scope', '$http', '$locatio
             $rootScope.actionsList[3].show = false;
             $rootScope.actionsList[4].show = false;
             $rootScope.actionsList[5].show = false;
+            $rootScope.actionsList[6].show = false;
+            $rootScope.actionsList[7].show = false;
+            $rootScope.actionsList[8].show = false;
         };
     }]);

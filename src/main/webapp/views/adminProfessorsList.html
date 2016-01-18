@@ -13,6 +13,29 @@
         <th class="text-center">Course</th>
         <th class="text-center">Actions</th>
     </tr>
+    
+    <tr>
+        <td class="text-center">
+            <input type="text" class="form-control" id="inputName" placeholder="Full Name">
+        </td>
+        <td class="text-center">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </td>
+        <td class="text-center">
+
+            <select id="inputCourse" >
+                <option ng-repeat="course in courses" value="{{course.id}}">
+                    {{course.name}}
+                </option>
+            </select>
+
+        </td>
+        <td class="text-center">
+            <a class="btn btn-primary btn-log" role="button" ng-click="insertProfessor()">Add</a>
+            
+       
+        </td>
+    </tr>
     <tr ng-repeat="professor in professors">
         <td class="text-center">
             {{professor.firstName}} {{professor.lastName}}
@@ -25,7 +48,11 @@
         </td>
         <td class="text-center">
             <a class="btn btn-primary btn-log" role="button" ng-click="viewProfessor(professor.id)">View</a>
+            
+     
         </td>
     </tr>
+    
 
 </table>
+

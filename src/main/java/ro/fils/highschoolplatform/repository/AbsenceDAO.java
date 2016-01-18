@@ -28,8 +28,8 @@ public class AbsenceDAO {
         ArrayList<AbsenceDTO> grades = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select ABSENCES.ID, STUDENTS.FIRST_NAME, STUDENTS.LAST_NAME, COURSES.NAME, ABSENCES.DATE from ABSENCES inner join STUDENTS on ABSENCES.STUDENT_ID = STUDENTS.ID"
-                    + "	inner join COURSES on ABSENCES.COURSE_ID = COURSES.ID WHERE STUDENTS.ID = " + studentId;
+            String sql = "select absences.ID, STUDENTS.FIRST_NAME, STUDENTS.LAST_NAME, COURSES.NAME, absences.DATE from absences inner join STUDENTS on absences.STUDENT_ID = STUDENTS.ID"
+                    + "	inner join COURSES on absences.COURSE_ID = COURSES.ID WHERE STUDENTS.ID = " + studentId;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -54,7 +54,7 @@ public class AbsenceDAO {
         boolean result = false;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "INSERT INTO ABSENCES(DATE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + studentId + "," + courseId + ")";
+            String sql = "INSERT INTO absences(DATE, STUDENT_ID, COURSE_ID)" + " VALUES('" + currentTime + "'," + studentId + "," + courseId + ")";
             System.out.println(sql);
             Statement ps = con.createStatement();
             System.out.println(ps.toString());

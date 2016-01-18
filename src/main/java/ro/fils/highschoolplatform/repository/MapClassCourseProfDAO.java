@@ -22,20 +22,27 @@ import ro.fils.highschoolplatform.util.Encryption;
  *
  * @author andre
  */
-public class StudentDAO {
+public class MapClassCourseProfDAO {
 
-    public Boolean insertStudent(Student student) {
+    public Boolean update(int class_id,int course_id, int professor_id) {
         boolean inserted = false;
         try {
             Connection conn = DBManager.getConnection();
-            String sql = "insert into students(PASSWORD, FIRST_NAME, LAST_NAME, EMAIL,CLASS_ID)" + " values (?,?,?,?,?)";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, student.getPassword());
-            statement.setString(2, student.getFirstName());
-            statement.setString(3, student.getLastName());
-            statement.setString(4, student.getEmail());
-            statement.setString(5, Integer.toString(student.getClassId()));
-            statement.execute();
+            String update = "UPDATE courses_classes SET PROFESSOR_ID=? WHERE CLASS_ID=? AND COURSE_ID =?;";
+            String insert = "insert into courses_classes (CLASS_ID,COURSE_ID,PROFESSOR_ID) VALUES(?,?,?);";
+            PreparedStatement statement = conn.prepareStatement(update);
+            statement.setInt(1, professor_id);
+            statement.setInt(2, class_id);
+            statement.setInt(3, course_id);
+            if(statement.executeUpdate() == 0 )
+            {
+                PreparedStatement insertStmt = conn.prepareStatement(insert);
+                insertStmt.setInt(1, class_id);
+                insertStmt.setInt(2, course_id);
+                insertStmt.setInt(3, professor_id);
+                insertStmt.execute();
+            }
+            
             inserted = true;
         } catch (SQLException ex) {
             Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,22 +50,23 @@ public class StudentDAO {
         return inserted;
     }
 
-    public boolean studentExists(String email) {
-        boolean found = false;
+    public int findProfessor(int class_id, int course_id) {
+        
+        int id = 0;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select EMAIL from students";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            String sql = " SELECT PROFESSOR_ID from courses_classes WHERE CLASS_ID =? AND COURSE_ID=?;";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, class_id);
+            st.setInt(2, course_id);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                if (email.equals(rs.getString("EMAIL")) == true) {
-                    found = true;
-                }
+                id = rs.getInt("PROFESSOR_ID");
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return found;
+        return id;
     }
 
     public boolean loginStudent(String email, String password) {

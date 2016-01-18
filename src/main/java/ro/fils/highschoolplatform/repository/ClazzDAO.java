@@ -28,7 +28,7 @@ public class ClazzDAO {
         boolean inserted = false;
         try {
             Connection conn = DBManager.getConnection();
-            String sql = "insert into CLASSES(NAME)" + " values (?)";
+            String sql = "insert into classes(NAME)" + " values (?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, clazz.getName());
             statement.execute();
@@ -44,7 +44,7 @@ public class ClazzDAO {
         ArrayList<Clazz> clazzes = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select * from CLASSES";
+            String sql = "select * from classes";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -63,7 +63,7 @@ public class ClazzDAO {
         Clazz clazz = null;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select * from CLASSES WHERE ID = " + id;
+            String sql = "select * from classes WHERE ID = " + id;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -81,7 +81,7 @@ public class ClazzDAO {
         Clazz clazz = null;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select CLASSES.ID, CLASSES.NAME from CLASSES inner join STUDENTS on CLASSES.ID = STUDENTS.CLASS_ID where STUDENTS.ID = " + studentId;
+            String sql = "select classes.ID, classes.NAME from classes inner join STUDENTS on classes.ID = STUDENTS.CLASS_ID where STUDENTS.ID = " + studentId;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -99,7 +99,7 @@ public class ClazzDAO {
         ArrayList<Clazz> clazzes = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            String sql = "SELECT * FROM CLASSES INNER JOIN COURSES_CLASSES on CLASSES.ID = COURSES_CLASSES.CLASS_ID WHERE COURSES_CLASSES.COURSE_ID = " + professorId;
+            String sql = "SELECT * FROM classes INNER JOIN COURSES_classes on classes.ID = COURSES_classes.CLASS_ID WHERE COURSES_classes.COURSE_ID = " + professorId;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {

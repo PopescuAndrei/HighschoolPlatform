@@ -30,12 +30,32 @@ highSchoolApp.controller('MenuController', ['$scope','$rootScope', '$location', 
                 class: 'pe-7s-graph',
                 show: false
             },
+            
             {
                 label: 'Classes',
                 url: '/HighschoolPlatform/#/classesList',
                 class: 'pe-7s-note2',
                 show: false
+            },
+            {
+                label: 'Students',
+                url: '/HighschoolPlatform/#/adminStudentsList',
+                class: 'pe-7s-graph',
+                show: false
+            },
+            {
+                label: 'Classes',
+                url: '/HighschoolPlatform/#/adminClassesList',
+                class: 'pe-7s-note2',
+                show: false
+            },
+            {
+                label: 'Professors',
+                url: '/HighschoolPlatform/#/adminProfessorsList',
+                class: 'pe-7s-user',
+                show: false
             }
+   
         ];
         
         $scope.logout = function () {
@@ -49,6 +69,9 @@ highSchoolApp.controller('MenuController', ['$scope','$rootScope', '$location', 
             $rootScope.actionsList[3].show = false;
             $rootScope.actionsList[4].show = false;
             $rootScope.actionsList[5].show = false;
+            $rootScope.actionsList[6].show = false;
+            $rootScope.actionsList[7].show = false;
+            $rootScope.actionsList[8].show = false;
             $location.url('/HighschoolPlatform');
         };
     }]);
