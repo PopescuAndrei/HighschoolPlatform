@@ -45,7 +45,7 @@ public class CoursesDAO {
         Course course = null;
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select * from courses where ID = " + "?";
+            String sql = "select Distinct(name) * from courses where ID = " + "?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -66,11 +66,10 @@ public class CoursesDAO {
         ArrayList<Course> courses = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            String sql = "select * from courses";
+            String sql = "select courses.name, courses.id, courses_classes.class_id as class_id, professor_id from courses inner join courses_classes on courses.id = courses_classes.course_id group by professor_id";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                course = new Course();
                 course = new Course();
                 course.setId(rs.getInt("ID"));
                 course.setName(rs.getString("NAME"));
