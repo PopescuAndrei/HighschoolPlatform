@@ -21,6 +21,6 @@ public interface DBProperties {
     public static final String PORT = "3306";
     public static final String SCHEMA = "highschool";
     public static final String USER = "root";
-    public static final String PASS = "";
+    public static final String PASS = "root";
     public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
 }

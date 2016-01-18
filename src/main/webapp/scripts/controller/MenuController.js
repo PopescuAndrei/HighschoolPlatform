@@ -59,7 +59,14 @@ highSchoolApp.controller('MenuController', ['$scope', '$rootScope', '$location',
                 url: '/HighschoolPlatform/#/myHomeworks',
                 class: 'pe-7s-pen',
                 shown: false
+            },
+            {
+                label:'Charts',
+                url: '/HighschoolPlatform/#/adminCharts',
+                class: 'pe-7s-pen',
+                shown: false
             }
+            
         ];
 
         $scope.logout = function () {
@@ -77,6 +84,7 @@ highSchoolApp.controller('MenuController', ['$scope', '$rootScope', '$location',
             $rootScope.actionsList[7].show = false;
             $rootScope.actionsList[8].show = false;
             $rootScope.actionsList[9].show = false;
+            $rootScope.actionsList[10].show = false;
 
             $location.url('/HighschoolPlatform');
         };
